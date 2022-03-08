@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.7.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "ZC_USERS_CDS": {
+      "kind": "service",
+      "@cds.external": true
+    },
+    "ZC_USERS_CDS.ZC_USERS": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Users View",
+      "@sap.content.version": "1",
+      "elements": {
+        "bname": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "User",
+          "@sap.quickinfo": "User Name in User Master Record"
+        },
+        "name_text": {
+          "type": "cds.String",
+          "length": 80,
+          "@sap.label": "Full Name",
+          "@sap.quickinfo": "Full Name of Person"
+        },
+        "UIM_INFO": {
+          "type": "cds.LargeString",
+          "@sap.label": "UIM Info",
+          "@sap.visible": "false",
+          "@sap.updatable": "false"
+        }
+      }
+    }
+  }
+}
