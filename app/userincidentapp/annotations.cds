@@ -1,0 +1,1 @@
+using uidincident_services as service from '../../srv/incident_service';
