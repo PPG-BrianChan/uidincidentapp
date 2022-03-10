@@ -18,7 +18,7 @@ module.exports = cds.service.impl(async function() {
 
 const createwf = async (incident) => {
 const payload = {
-    definitionId: "cng.com.approvalprocess",
+    definitionId: "uidincidentapp.approvalprocess",
     context: {
       IncidentUUID: incident.ID,
       request: { id: incident.ID },
