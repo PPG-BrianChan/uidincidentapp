@@ -38,6 +38,36 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: uidincidentapp-destination-content
+  type: com.sap.application.content
+  requires:
+   - name: uaa_uidincidentapp
+     parameters:
+       service-key:
+         name: uaa_uidincidentapp-key
+   - name: uidincidentapp_html_repo_host
+     parameters:
+       service-key:
+         name: uidincidentapp_html_repo_host-key
+   - name: uidincidentapp-destination-service
+     parameters:
+       content-target: true        
+  parameters:
+     content:
+       subaccount:
+         destinations:
+         - Name: uidincidentapp_html_repo_host
+           ServiceInstanceName: uidincidentapp-html5-app-host-service
+           ServiceKeyName: uidincidentapp_html_repo_host-key
+           sap.cloud.service: uidincidentapp
+         - Authentication: OAuth2UserTokenExchange
+           Name: uidincidentapp_uaa_fiori
+           ServiceInstanceName: uidincidentapp-xsuaa-service
+           ServiceKeyName: uaa_uidincidentapp-key
+           sap.cloud.service: uidincidentapp
+         existing_destinations_policy: update    
+  build-parameters:
+     no-source: true
 resources:
 - name: uidincidentapp-repo-host
   type: org.cloudfoundry.managed-service
@@ -63,6 +93,36 @@ resources:
     service: destination
     service-name: uidincidentapp-dest-srv
     service-plan: lite
+- name: uidincidentapp-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+     service: destination
+     service-name: uidincidentapp-destination-service
+     service-plan: lite
+     config:
+       init_data:
+         subaccount:
+           existing_destinations_policy: update
+           destinations:
+             - Name: uidincidentapp_srv
+               Description: uid incident app
+               Authentication: NoAuthentication
+               ProxyType: Internet
+               Type: HTTP
+               URL: https://crossfunctional-dev-org-usermanagement-uidincidentapp.cfapps.eu10.hana.ondemand.com
+- name: uidincidentapp_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: uidincidentapp-html5-app-host-service
+    service-plan: app-host
+- name: uaa_uidincidentapp
+  type: org.cloudfoundry.managed-service
+  parameters:
+     path: ./xs-security.json
+     service: xsuaa
+     service-name: uidincidentapp-xsuaa-service
+     service-plan: application
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
