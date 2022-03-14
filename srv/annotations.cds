@@ -29,7 +29,8 @@ annotate uidincident_services.incident with {
             }
         ],
     }
-    targetid    @title : '{i18n>Targetid}';
+    targetid    @title : '{i18n>Targetid}'
+                @assert.integrity:false;
     approverid  @title : '{i18n>Approverid}'
                 @readonly;
     status      @title : '{i18n>Status}'
