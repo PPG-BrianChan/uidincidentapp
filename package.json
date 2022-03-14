@@ -59,7 +59,7 @@
             "db": {
                 "kind": "hana",
                 "credentials": {
-                    "database": "servicereq.db"
+                    "database": "uidincident.db"
                 }
             }
         },
