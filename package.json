@@ -57,7 +57,10 @@
                 }
             },
             "db": {
-                "kind": "sql"
+                "kind": "hana",
+                "credentials": {
+                    "database": "servicereq.db"
+                }
             }
         },
         "hana": {
