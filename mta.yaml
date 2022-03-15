@@ -16,6 +16,9 @@ modules:
       builder: npm-ci
     requires:
       - name: uidincidentapp-db
+      - name: uidincidentapp-destination-service
+      - name: uidincidentapp-conn-service
+      - name: uaa_uidincidentapp
   - name: uidincidentapp-app-content
     type: com.sap.application.content
     path: .
@@ -78,6 +81,7 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: uidincidentapp-db
+
 resources:
   - name: uidincidentapp-repo-host
     type: org.cloudfoundry.managed-service
@@ -133,6 +137,12 @@ resources:
       service: xsuaa
       service-name: uidincidentapp-xsuaa-service
       service-plan: application
+
+  - name: uidincidentapp-conn-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
 
   - name: uidincidentapp-db
     type: com.sap.xs.hdi-container
