@@ -49,11 +49,9 @@
             "ZC_USERS_CDS": {
                 "kind": "odata-v2",
                 "model": "srv/external/ZC_USERS_CDS",
-                "[development]": {
-                    "credentials": {
-                        "destination": "s4hanaPSD",
-                        "path": "/sap/opu/odata/sap/ZC_USERS_CDS"
-                    }
+                "credentials": {
+                    "destination": "PSD_HTTPS_TEST",
+                    "path": "/sap/opu/odata/sap/ZC_USERS_CDS"
                 }
             },
             "db": {
