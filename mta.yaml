@@ -60,7 +60,7 @@ modules:
   type: com.sap.application.content
   path: .
   requires:
-  - name: uidincidentapp-repo-host
+  - name: uidincidentapp_html_repo_host
     parameters:
       content-target: true
   build-parameters:
@@ -78,7 +78,7 @@ modules:
     builder: custom
     commands:
     - npm install
-    - npm run build:cf
+    # - npm run build:cf
     supported-platforms: []
 resources:
 - name: uidincidentapp-db
@@ -91,6 +91,8 @@ resources:
     hdi-service-name: ${service-name}
 - name: uidincidentapp-destination-service
   type: org.cloudfoundry.managed-service
+  requires: 
+    - name: uidincidentapp-srv
   parameters:
     config:
       HTML5Runtime_enabled: true
@@ -125,12 +127,12 @@ resources:
     service: xsuaa
     service-name: uidincidentapp-xsuaa-service
     service-plan: application
-- name: uidincidentapp-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: uidincidentapp-html5-srv
-    service-plan: app-host
+# - name: uidincidentapp-repo-host
+#   type: org.cloudfoundry.managed-service
+#   parameters:
+#     service: html5-apps-repo
+#     service-name: uidincidentapp-html5-srv
+#     service-plan: app-host
 - name: uidincidentapp-conn-service
   type: org.cloudfoundry.managed-service
   parameters:
